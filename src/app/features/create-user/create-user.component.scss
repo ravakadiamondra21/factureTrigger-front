@@ -1,0 +1,105 @@
+// Variables cohérentes avec le reste de votre application
+$primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+$input-bg: #ffffff;
+$text-main: #2d3748;
+$border-color: #e2e8f0;
+$radius: 12px;
+$shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+.feature-signin {
+  max-width: 450px;
+  margin: 40px auto;
+  padding: 40px;
+  background: white;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  font-family: "Inter", "Segoe UI", sans-serif;
+
+  p {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: $text-main;
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 4px;
+      background: $primary-gradient;
+      border-radius: 2px;
+    }
+  }
+
+  .feature-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      //width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid $border-color;
+      border-radius: $radius;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: $input-bg;
+      outline: none;
+
+      &::placeholder {
+        color: #a0aec0;
+      }
+
+      &:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+      }
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 16px;
+      border: none;
+      border-radius: $radius;
+      background: $primary-gradient;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.3s;
+
+      &:hover {
+        box-shadow: 0 8px 20px rgba(118, 75, 162, 0.3);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// --- RESPONSIVITÉ ---
+
+@media (max-width: 500px) {
+  .feature-signin {
+    margin: 20px;
+    padding: 30px 20px;
+
+    p {
+      font-size: 1.4rem;
+    }
+
+    input,
+    button {
+      font-size: 0.95rem;
+      padding: 12px 15px;
+    }
+  }
+}

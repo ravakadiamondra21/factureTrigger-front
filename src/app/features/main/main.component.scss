@@ -1,0 +1,86 @@
+// Variables pour une modification facile
+$primary-color: #f7f9fc;
+$header-bg: #2c3e50;;
+$text-color: #333;
+$spacing: 20px;
+$breakpoint-mobile: 600px;
+
+.feature-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  header {
+    background-color: $header-bg;
+    padding: 0 $spacing;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    
+    ul {
+      display: flex;
+      flex-direction: row; // Alignement horizontal forcé
+      align-items: center;
+      justify-content: flex-start; // Espace entre les éléments
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      height: 60px;
+      gap: 80px;
+
+      li {
+        font-weight: 500;
+        color: $primary-color;
+        cursor: pointer;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: lighten($primary-color, 20%);
+        }
+
+        // Le premier élément (Gestion des Factures) prend plus de place ou a un style différent
+        &:first-child {
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+
+  .feature-body {
+    flex: 1; // Prend tout l'espace restant
+    padding: $spacing;
+    background-color: #ffffff;
+
+    .feture-outlet {
+      max-width: 1200px; // Limite la largeur sur les très grands écrans
+      margin: 0 auto;
+      width: 100%;
+    }
+  }
+}
+
+// --- RESPONSIVITÉ ---
+
+@media (max-width: $breakpoint-mobile) {
+  .feature-main {
+    header {
+      ul {
+        padding: 10px 0;
+        height: auto;
+        flex-wrap: wrap; // Permet de passer à la ligne si nécessaire
+        gap: 10px;
+        justify-content: center; // Centre les éléments sur mobile
+
+        li {
+          font-size: 0.9rem;
+          padding: 5px 10px;
+        }
+      }
+    }
+    
+    .feature-body {
+      padding: 10px; // Réduit les marges sur petit écran
+    }
+  }
+}

@@ -1,0 +1,144 @@
+// Variables de couleurs
+$bg-card: #ffffff;
+$text-main: #2d3748;
+$text-muted: #718096;
+$border-color: #edf2f7;
+$accent-blue: #4a90e2;
+
+// Couleurs par type d'action
+$color-insert: #38a169; // Vert
+$color-update: #d69e2e; // Orange/Jaune
+$color-delete: #e53e3e; // Rouge
+
+$radius: 12px;
+$shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+.feature-trigger {
+  background: $bg-card;
+  padding: 24px;
+  border-radius: $radius;
+  box-shadow: $shadow;
+  margin: 20px auto;
+  max-width: 1000px;
+  font-family: "Inter", "Segoe UI", sans-serif;
+
+  h3 {
+    font-size: 1.4rem;
+    color: $text-main;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+
+    &::before {
+      content: "";
+      width: 4px;
+      height: 24px;
+      background: $accent-blue;
+      margin-right: 12px;
+      border-radius: 4px;
+    }
+  }
+
+  // Conteneur du tableau pour le scroll mobile
+  .feature-table {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: $radius;
+    border: 1px solid $border-color;
+    margin-bottom: 25px;
+
+    .feature-table-audit {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 600px; // Évite l'écrasement sur mobile
+
+      th {
+        background-color: #f8fafc;
+        color: $text-muted;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+        padding: 16px;
+        text-align: left;
+        border-bottom: 2px solid $border-color;
+      }
+
+      td {
+        padding: 14px 16px;
+        color: $text-main;
+        font-size: 0.9rem;
+        border-bottom: 1px solid $border-color;
+      }
+
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      tr:hover {
+        background-color: #f1f5f9;
+      }
+
+      // Style spécifique pour la colonne "Type d'action"
+      td:nth-child(2) {
+        font-weight: 700;
+        font-size: 0.8rem;
+        color: $color-insert; // Par défaut vert pour INSERT
+      }
+    }
+  }
+
+  // Section des compteurs en bas
+  .feature-count {
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      li {
+        flex: 1;
+        min-width: 180px;
+        padding: 12px 16px;
+        background: #f8fafc;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: $text-main;
+        border-left: 5px solid $border-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+
+        // Couleurs dynamiques basées sur le contenu (via sélecteurs nth si l'ordre est fixe)
+        &:nth-child(1) {
+          border-left-color: $color-insert;
+        } // Insertion
+        &:nth-child(2) {
+          border-left-color: $color-update;
+        } // Modification
+        &:nth-child(3) {
+          border-left-color: $color-delete;
+        } // Suppression
+      }
+    }
+  }
+}
+
+// --- RESPONSIVITÉ ---
+@media (max-width: 600px) {
+  .feature-trigger {
+    padding: 15px;
+
+    .feature-count ul {
+      flex-direction: column;
+
+      li {
+        width: 100%;
+      }
+    }
+  }
+}

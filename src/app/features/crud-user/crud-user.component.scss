@@ -1,0 +1,192 @@
+// Variables
+$primary: #4a90e2;
+$danger: #e53e3e;
+$warning: #ed8936;
+$bg-light: #f7fafc;
+$text-dark: #2d3748;
+$border-color: #e2e8f0;
+$radius: 12px;
+
+.feature-user {
+  display: flex;
+  flex-direction: column; // Empilement par défaut (mobile)
+  gap: 30px;
+  padding: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  // --- FORMULAIRE ---
+  .feature-form {
+    flex: 1;
+    background: white;
+    padding: 25px;
+    border-radius: $radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+
+    h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: $text-dark;
+      font-size: 1.25rem;
+      border-bottom: 2px solid $bg-light;
+      padding-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #718096;
+        margin-bottom: -10px; // Rapproche le label de l'input
+      }
+
+      input {
+        padding: 12px;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+
+        &:focus {
+          outline: none;
+          border-color: $primary;
+          box-shadow: 0 0 0 3px rgba($primary, 0.1);
+        }
+      }
+
+      button {
+        background: $primary;
+        color: white;
+        border: none;
+        padding: 14px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: opacity 0.2s;
+        margin-top: 10px;
+
+        &:hover {
+          opacity: 0.9;
+        }
+      }
+    }
+
+    .custom-picker {
+      //width: 100%;
+      padding: 12px;
+      border: 1.5px solid $border-color;
+      border-radius: $radius;
+      font-family: "Inter", sans-serif;
+      font-size: 1rem;
+      color: #2d3748;
+      background-color: #fff;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      // Style au clic/focus
+      &:focus {
+        border-color: $primary;
+        box-shadow: 0 0 0 3px rgba($primary, 0.1);
+      }
+
+      // Personnalisation de l'icône du calendrier (Chrome/Edge/Safari)
+      &::-webkit-calendar-picker-indicator {
+        cursor: pointer;
+        filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(185deg)
+          brightness(95%) contrast(80%); // Donne la couleur $primary-color à l'icône
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
+  // --- TABLEAU ---
+  .feature-list {
+    flex: 2; // Le tableau prend plus de place que le formulaire
+    background: white;
+    padding: 25px;
+    border-radius: $radius;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+
+      th {
+        text-align: left;
+        padding: 15px;
+        background: $bg-light;
+        color: #718096;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      td {
+        padding: 15px;
+        border-bottom: 1px solid $bg-light;
+        color: $text-dark;
+        font-size: 0.95rem;
+
+        // Boutons d'action dans le tableau
+        button {
+          padding: 8px 12px;
+          border: none;
+          border-radius: 6px;
+          font-size: 0.85rem;
+          cursor: pointer;
+          font-weight: 500;
+          margin-right: 5px;
+          transition: transform 0.1s;
+
+          &:first-of-type {
+            // Modifier
+            background: rgba($warning, 0.1);
+            color: $warning;
+            &:hover {
+              background: $warning;
+              color: white;
+            }
+          }
+
+          &:last-of-type {
+            // Supprimer
+            background: rgba($danger, 0.1);
+            color: $danger;
+            &:hover {
+              background: $danger;
+              color: white;
+            }
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+        }
+      }
+
+      tr:hover {
+        background-color: #fcfcfc;
+      }
+    }
+  }
+}
+
+// --- RESPONSIVITÉ (Desktop) ---
+@media (min-width: 992px) {
+  .feature-user {
+    flex-direction: row; // Alignement horizontal
+    align-items: flex-start;
+  }
+}
