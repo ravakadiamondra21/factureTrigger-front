@@ -9,15 +9,15 @@ import { MainComponent } from './features/main/main.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'loginAdmin', pathMatch: 'full' },
-
+  
   {
     path: '',
     component: MainComponent,
     children: [
+      { path: 'loginUser', component: LoginUserComponent },
       { path: 'loginAdmin', component: LoginAdminComponent },
       { path: 'audit', component: AuditComponent },
       { path: 'signinUser', component: CreateUserComponent },
-      { path: 'loginUser', component: LoginUserComponent },
       { path: 'crudUser', component: CrudUserComponent },
     ],
   },

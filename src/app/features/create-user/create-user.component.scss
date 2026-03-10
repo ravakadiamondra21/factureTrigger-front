@@ -82,6 +82,28 @@ $shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
         transform: translateY(0);
       }
     }
+
+    .small-error {
+      color: #e53e3e; // Un rouge vif mais élégant (type Tailwind)
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: -12px; // Pour le coller un peu plus à l'input du dessus
+      margin-left: 4px;
+      display: block; // Assure qu'il prend sa propre ligne
+      animation: fadeIn 0.3s ease-out; // Petite animation pour l'apparition
+    }
+
+    // Animation pour rendre l'apparition moins brutale
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   }
 }
 
