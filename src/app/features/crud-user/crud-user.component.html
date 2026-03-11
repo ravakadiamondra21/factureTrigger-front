@@ -2,15 +2,21 @@
   <div class="feature-form">
     <h3>Ajouter une facture</h3>
 
-    <form action="">
+    <form [formGroup]="createFactureForm" (ngSubmit)="onSubmit()">
       <label for="">Nom de la facture</label>
-      <input type="text" />
+      <input type="text" formControlName="nom" />
 
       <label for="">Date de la facture</label>
-      <input type="datetime-local" name="dateFacture" id="dateFacture" class="custom-picker"/>
+      <input
+        type="date"
+        formControlName="date_facture"
+        name="dateFacture"
+        id="dateFacture"
+        class="custom-picker"
+      />
 
       <label for="">Montant</label>
-      <input type="number" name="" id="" />
+      <input type="number" name="" id="" formControlName="montant" />
 
       <button>Ajouter</button>
     </form>
@@ -25,11 +31,11 @@
         <th>Montant</th>
         <th></th>
       </tr>
-      <tr>
-        <td>1</td>
-        <td>Score</td>
-        <td>2026-03-21 15:00</td>
-        <td>100000 Ariary</td>
+      <tr *ngFor="let f of factures">
+        <td>{{f.id_facture}}</td>
+        <td>{{f.nom}}</td>
+        <td>{{f.date_facture}}</td>
+        <td>{{f.montant}} Ariary</td>
         <td>
           <Button>Modifier</Button>
           <Button>Supprimer</Button>
