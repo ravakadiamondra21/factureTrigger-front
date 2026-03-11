@@ -13,6 +13,7 @@ export class CrudUserComponent {
   createFactureForm!: FormGroup;
 
   factures: FactureResponse[] = [];
+  editingFactureId: number | null = null;
 
   constructor(
     private factureService: FactureService,
@@ -37,15 +38,28 @@ export class CrudUserComponent {
         montant: this.createFactureForm.get('montant')?.value,
       };
 
-      this.factureService.insertFacture(facture).subscribe({
-        next: (response) => {
-          console.log('inserted');
-          this.getFacture();
-        },
-        error: (e) => {
-          console.log(e);
-        },
-      });
+      if (this.editingFactureId) {
+        this.factureService
+          .updateFacture(facture, this.editingFactureId)
+          .subscribe({
+            next: () => {
+              this.getFacture();
+              this.createFactureForm.reset();
+              this.editingFactureId = null;
+            },
+          });
+      } else {
+        this.factureService.insertFacture(facture).subscribe({
+          next: () => {
+            console.log('inserted');
+            this.getFacture();
+            this.createFactureForm.reset();
+          },
+          error: (e) => {
+            console.log(e);
+          },
+        });
+      }
     }
   }
 
@@ -59,6 +73,16 @@ export class CrudUserComponent {
       error: (err) => {
         console.log(err);
       },
+    });
+  }
+
+  onModifyClick(facture: FactureResponse) {
+    this.editingFactureId = facture.id_facture;
+
+    this.createFactureForm.patchValue({
+      nom: facture.nom,
+      date_facture: facture.date_facture,
+      montant: facture.montant,
     });
   }
 }

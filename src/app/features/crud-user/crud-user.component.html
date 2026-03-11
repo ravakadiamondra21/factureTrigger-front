@@ -18,7 +18,7 @@
       <label for="">Montant</label>
       <input type="number" name="" id="" formControlName="montant" />
 
-      <button>Ajouter</button>
+      <button>{{ editingFactureId ? "Modifier" : "Ajouter" }}</button>
     </form>
   </div>
 
@@ -32,12 +32,12 @@
         <th></th>
       </tr>
       <tr *ngFor="let f of factures">
-        <td>{{f.id_facture}}</td>
-        <td>{{f.nom}}</td>
-        <td>{{f.date_facture}}</td>
-        <td>{{f.montant}} Ariary</td>
+        <td>{{ f.id_facture }}</td>
+        <td>{{ f.nom }}</td>
+        <td>{{ f.date_facture }}</td>
+        <td>{{ f.montant }} Ariary</td>
         <td>
-          <Button>Modifier</Button>
+          <Button (click)="onModifyClick(f)">Modifier</Button>
           <Button>Supprimer</Button>
         </td>
       </tr>

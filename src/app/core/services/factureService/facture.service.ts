@@ -27,7 +27,6 @@ export class FactureService {
     return this.httpClient.post(`${this.apiUrl}/create`, createFactureModel, {
       headers,
     });
-
   }
 
   public selectAllFacture(): Observable<any> {
@@ -37,6 +36,23 @@ export class FactureService {
       Authorization: `Bearer ${token}`,
     });
 
-    return this.httpClient.get(`${this.apiUrl}/findAll`, {headers});
+    return this.httpClient.get(`${this.apiUrl}/findAll`, { headers });
+  }
+
+  public updateFacture(
+    facture: CreateFactureModel,
+    num_facture: number
+  ): Observable<any> {
+    const token = this.userService.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.httpClient.put(
+      `${this.apiUrl}/update/${num_facture}`,
+      facture,
+      { headers }
+    );
   }
 }
