@@ -38,9 +38,19 @@
         <td>{{ f.montant }} Ariary</td>
         <td>
           <Button (click)="onModifyClick(f)">Modifier</Button>
-          <Button>Supprimer</Button>
+          <Button (click)="showingModal(f)">Supprimer</Button>
         </td>
       </tr>
     </table>
+  </div>
+
+  <div class="delete-modal" *ngIf="showModal">
+    <div class="modal-content">
+      <p>Êtes-vous sûr de vouloir supprimer cette facture ?</p>
+      <div class="modal-actions">
+        <button (click)="confirmDelete()">Oui</button>
+        <button (click)="showModal = false">Non</button>
+      </div>
+    </div>
   </div>
 </div>

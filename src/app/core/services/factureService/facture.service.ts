@@ -55,4 +55,16 @@ export class FactureService {
       { headers }
     );
   }
+
+  public deleteFacture(num_facture: number): Observable<any> {
+    const token = this.userService.getToken();
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.httpClient.delete(`${this.apiUrl}/delete/${num_facture}`, {
+      headers,
+    });
+  }
 }

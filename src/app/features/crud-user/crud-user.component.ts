@@ -14,6 +14,8 @@ export class CrudUserComponent {
 
   factures: FactureResponse[] = [];
   editingFactureId: number | null = null;
+  deletingFactureId: number | null = null;
+  showModal: boolean = false;
 
   constructor(
     private factureService: FactureService,
@@ -84,5 +86,22 @@ export class CrudUserComponent {
       date_facture: facture.date_facture,
       montant: facture.montant,
     });
+  }
+
+  showingModal(facture: FactureResponse) {
+    this.showModal = true;
+    this.deletingFactureId = facture.id_facture;
+  }
+
+  confirmDelete() {
+    if(this.deletingFactureId) {
+      this.factureService.deleteFacture(this.deletingFactureId).subscribe({
+        next: () => {
+          this.deletingFactureId = null;
+          this.getFacture();
+          this.showModal = false;
+        }
+      })
+    }
   }
 }

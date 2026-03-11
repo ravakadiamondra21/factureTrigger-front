@@ -6,6 +6,9 @@ $bg-light: #f7fafc;
 $text-dark: #2d3748;
 $border-color: #e2e8f0;
 $radius: 12px;
+$success:#38a169;
+$text-muted:    #718096;
+
 
 .feature-user {
   display: flex;
@@ -188,5 +191,101 @@ $radius: 12px;
   .feature-user {
     flex-direction: row; // Alignement horizontal
     align-items: flex-start;
+  }
+}
+
+// Variables nécessaires
+$danger: #e53e3e;
+$text-dark: #2d3748;
+$text-muted: #718096;
+$bg-light: #f7fafc;
+$radius: 12px;
+
+.delete-modal {
+  // --- L'arrière-plan gris (Overlay) ---
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(45, 55, 72, 0.7); // Gris foncé semi-transparent
+  backdrop-filter: blur(2px);              // Léger flou pour focus sur le modal
+  display: flex;
+  align-items: center;                     // Centre verticalement
+  justify-content: center;                 // Centre horizontalement
+  z-index: 9999;                           // Passe par-dessus tout
+  padding: 20px;
+
+  // --- La boîte du modal (plus petite) ---
+  .modal-content {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: $radius;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 320px;                      // Largeur réduite pour un aspect "petit"
+    text-align: center;
+    animation: modalPop 0.25s ease-out;
+
+    p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $text-dark;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    // --- Conteneur des boutons ---
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+
+      button {
+        flex: 1;                           // Les boutons prennent la même largeur
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s ease;
+
+        // Bouton OUI (Supprimer)
+        &:first-child {
+          background-color: $danger;
+          color: white;
+          &:hover {
+            background-color: darken($danger, 8%);
+          }
+        }
+
+        // Bouton NON (Annuler)
+        &:last-child {
+          background-color: $bg-light;
+          color: $text-muted;
+          border: 1px solid #e2e8f0;
+          &:hover {
+            background-color: #edf2f7;
+          }
+        }
+
+        &:active {
+          transform: scale(0.96);
+        }
+      }
+    }
+  }
+}
+
+// Animation d'apparition (léger zoom)
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
