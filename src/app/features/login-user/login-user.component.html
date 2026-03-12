@@ -8,11 +8,40 @@
     (ngSubmit)="onSubmit()"
   >
     <input type="text" placeholder="E-mail" formControlName="userEmail" />
+    <small
+      class="small-error"
+      *ngIf="
+        loginUserForm.get('userEmail')?.invalid &&
+        loginUserForm.get('userEmail')?.touched
+      "
+      >E-mail invalide</small
+    >
+
     <input
       type="password"
       placeholder="Mot de passe"
       formControlName="password"
     />
+    <small
+      class="small-error"
+      *ngIf="
+        loginUserForm.get('password')?.invalid &&
+        loginUserForm.get('password')?.touched
+      "
+    >
+      Mot de passe obligatoire
+    </small>
+
+    <small class="small-error" *ngIf="loginError">
+      E-mail ou mot de passe incorrect
+    </small>
+
+    <small class="small-error" *ngIf="notUser">
+      Vous n'êtes pas autorisé à vous authentifier dans cette fenêtre
+    </small>
+
     <button type="submit">Entrer</button>
+
+    <a (click)="goToRegister()">Créer un USER</a>
   </form>
 </div>

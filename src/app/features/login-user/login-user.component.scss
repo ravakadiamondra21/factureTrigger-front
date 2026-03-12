@@ -4,6 +4,8 @@ $input-bg: rgba(255, 255, 255, 0.9);
 $button-color: #764ba2;
 $radius: 12px;
 $shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+$logout-gradient: linear-gradient(135deg, #f56565 0%, #c53030 100%); // Dégradé rouge/corail
+$logout-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
 
 .feature-login {
   display: flex;
@@ -92,6 +94,26 @@ $shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
     }
   }
+  a {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #667eea; // Utilise la couleur de départ de ton dégradé
+    text-align: center;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #764ba2; // Bascule vers la couleur de fin du dégradé
+      text-decoration: underline;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
 }
 
 // --- RESPONSIVITÉ ---
@@ -106,3 +128,28 @@ $shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
   }
 }
+
+.small-error {
+  color: #e53e3e; // Un rouge vif mais élégant (type Tailwind)
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: -12px; // Pour le coller un peu plus à l'input du dessus
+  margin-left: 4px;
+  display: block; // Assure qu'il prend sa propre ligne
+  animation: fadeIn 0.3s ease-out; // Petite animation pour l'apparition
+}
+
+// Animation pour rendre l'apparition moins brutale
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  
+}
+

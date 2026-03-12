@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CountingAuditModel } from 'src/app/models/countingAuditModel';
 import { environment } from 'src/environments/environment.development';
+import { AuthService } from '../auth.service';
 import { UserService } from '../userService/user.service';
 
 @Injectable({
@@ -13,11 +14,12 @@ export class AuditService {
 
   constructor(
     private httpClient: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   public getAllAudit(): Observable<any> {
-    const token = this.userService.getToken();
+    const token = this.authService.getAdmin()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -27,7 +29,7 @@ export class AuditService {
   }
 
   public countingAudit(): Observable<CountingAuditModel[]> {
-    const token = this.userService.getToken();
+    const token = this.authService.getAdmin()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

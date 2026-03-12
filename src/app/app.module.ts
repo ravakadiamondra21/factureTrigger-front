@@ -30,7 +30,7 @@ import { InterceptorService } from './core/services/interceptor/interceptor.serv
     HttpClientModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
+    //{ provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })

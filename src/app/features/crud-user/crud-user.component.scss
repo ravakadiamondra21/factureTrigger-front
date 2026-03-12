@@ -8,7 +8,8 @@ $border-color: #e2e8f0;
 $radius: 12px;
 $success:#38a169;
 $text-muted:    #718096;
-
+$logout-gradient: linear-gradient(135deg, #f56565 0%, #c53030 100%); // Dégradé rouge/corail
+$logout-shadow: 0 4px 12px rgba(229, 62, 62, 0.2);
 
 .feature-user {
   display: flex;
@@ -287,5 +288,50 @@ $radius: 12px;
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+.logout-container {
+  display: flex;
+  justify-content: flex-end; // Aligne le bouton à droite (optionnel)
+  //padding: 20px;
+
+  .btn-logout {
+    display: flex;
+    align-items: center;
+    gap: 8px; // Espace pour une éventuelle icône
+    padding: 10px 24px;
+    border: none;
+    border-radius: $radius; // Utilise ta variable 12px
+    background: $logout-gradient;
+    color: white;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: $logout-shadow;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(197, 48, 48, 0.4);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+    
+    // Style secondaire si tu veux un bouton plus discret (outline)
+    &.outline {
+      background: transparent;
+      border: 2px solid #f56565;
+      color: #f56565;
+      box-shadow: none;
+      
+      &:hover {
+        background: #f56565;
+        color: white;
+      }
+    }
   }
 }

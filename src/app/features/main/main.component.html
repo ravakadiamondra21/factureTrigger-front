@@ -2,13 +2,12 @@
   <header>
     <ul>
       <li>Gestion des Factures</li>
-      <li>User</li>
-      <li>Admin</li>
+      <li (click)="goToUser()">User</li>
+      <li (click)="goToAdmin()">Admin</li>
     </ul>
   </header>
 
   <div class="feature-body">
-
     <div class="feature-outlet">
       <router-outlet></router-outlet>
     </div>

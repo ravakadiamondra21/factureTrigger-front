@@ -31,14 +31,10 @@ export class UserService {
   }
 
   public login(loginUser: LoginUser): Observable<LoginUserResponse> {
-    return this.httpClient
-      .post<LoginUserResponse>(`${this.api}/login`, loginUser)
-      .pipe(
-        tap((user) => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        })
-      );
+    return this.httpClient.post<LoginUserResponse>(
+      `${this.api}/login`,
+      loginUser
+    );
   }
 
   public logout() {
@@ -56,4 +52,4 @@ export class UserService {
   public isLoggedIn(): boolean {
     return !!this.getToken();
   }
-} 
+}

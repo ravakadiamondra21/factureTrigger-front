@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CreateFactureModel } from 'src/app/models/createFactureModel';
 import { environment } from 'src/environments/environment.development';
+import { AuthService } from '../auth.service';
 import { UserService } from '../userService/user.service';
 
 @Injectable({
@@ -12,13 +13,14 @@ export class FactureService {
   private apiUrl = environment.apiUrlFacture;
   constructor(
     private httpClient: HttpClient,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   public insertFacture(
     createFactureModel: CreateFactureModel
   ): Observable<any> {
-    const token = this.userService.getToken();
+    const token = this.authService.getUser()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -30,20 +32,19 @@ export class FactureService {
   }
 
   public selectAllFacture(): Observable<any> {
-    const token = this.userService.getToken();
+    const token = this.authService.getUser()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-
-    return this.httpClient.get(`${this.apiUrl}/findAll`, { headers });
+    return this.httpClient.get(`${this.apiUrl}/findAll`, {headers});
   }
 
   public updateFacture(
     facture: CreateFactureModel,
     num_facture: number
   ): Observable<any> {
-    const token = this.userService.getToken();
+    const token = this.authService.getUser()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -57,7 +58,7 @@ export class FactureService {
   }
 
   public deleteFacture(num_facture: number): Observable<any> {
-    const token = this.userService.getToken();
+    const token = this.authService.getUser()?.token;
 
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

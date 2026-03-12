@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { FactureService } from 'src/app/core/services/factureService/facture.service';
 import { CreateFactureModel } from 'src/app/models/createFactureModel';
 import { FactureResponse } from 'src/app/models/factureResponseModel';
@@ -19,7 +21,9 @@ export class CrudUserComponent {
 
   constructor(
     private factureService: FactureService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -103,5 +107,10 @@ export class CrudUserComponent {
         }
       })
     }
+  }
+
+  logout() {
+    this.authService.logoutUser();
+    this.router.navigate(['/loginUser']);
   }
 }
